@@ -27,7 +27,6 @@ func _process(delta):
 	velocity.y += acceleration.y * delta
 	if(-TOP_VEL > velocity.y or velocity.y > TOP_VEL):
 		velocity.y = TOP_VEL * conditional(velocity.y > 0, 1, -1)
-	print(velocity)
 	position.y += velocity.y * delta
 	if(TOP > position.y or position.y > BOTTOM):
 		velocity.y = 0
