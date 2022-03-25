@@ -1,10 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites/background/sky.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://sprites/birds/placeholder_bird.png" type="Texture" id=3]
+[ext_resource path="res://SceneScript.gd" type="Script" id=4]
+[ext_resource path="res://hitCount.gd" type="Script" id=5]
+[ext_resource path="res://sprites/fireworks/circle.png" type="Texture" id=6]
+[ext_resource path="res://moving_expl.gd" type="Script" id=7]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.85989
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HitCount" type="Label" parent="CanvasLayer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 127.0
+margin_bottom = 37.0
+text = "HIT COUNT: 0"
+script = ExtResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -18,12 +38,30 @@ offset = Vector2( 370, 180 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="Bird" type="KinematicBody2D" parent="."]
+position = Vector2( 100, 180 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-position = Vector2( 100, 170 )
+[node name="Sprite" type="Sprite" parent="Bird"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird"]
+shape = SubResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 150, 93 )
+script = ExtResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+scale = Vector2( 0.738315, 0.738315 )
+collision_layer = 2
+
+[node name="Sprite" type="Sprite" parent="Node2D/Area2D"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+scale = Vector2( 9.79892, 9.79892 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Node2D/Area2D" to="Bird" method="_on_Area2D_body_entered"]
