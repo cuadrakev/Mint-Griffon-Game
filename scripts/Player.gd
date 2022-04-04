@@ -34,6 +34,6 @@ func _process(delta):
 	rotation = velocity.y/600
 	
 	
-func _on_Area2D_body_entered(_body):
-	get_node("/root/Scene").hits += 1
-	get_node("/root/Scene/CanvasLayer/HitCount").updateText()
+#func _on_Area2D_body_entered(_body):
+#	get_node("/root/Scene").hits += 1
+#	get_node("/root/Scene/CanvasLayer/HitCount").updateText()
