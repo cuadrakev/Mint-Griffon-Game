@@ -4,7 +4,8 @@ var hits: int
 
 var timer = 1
 
-var fwNode = load("res://scenes/FireworksNode.tscn")
+var o_fwNode = load("res://scenes/FireworksNode.tscn")
+var r_fwNode = load("res://scenes/PurpleFwNode.tscn")
 
 var fwInst
 
@@ -30,6 +31,11 @@ func _process(delta):
 	
 
 func spawn_next():
+	var fwNode = null
+	if rng.randi() % 2 == 0:
+		fwNode = o_fwNode
+	else:
+		fwNode = r_fwNode
 	fwInst = fwNode.instance()
 	add_child(fwInst)
 	fwInst.position.x = 900

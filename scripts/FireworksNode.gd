@@ -6,8 +6,10 @@ const SPEED = 200
 const GRAVITY = 600
 
 const baseVel = 400
-var variance = 120
+var variance = 140
 var initVel
+
+export var startPos: float
 
 func _ready():
 	rng.randomize()
@@ -18,7 +20,7 @@ func _process(delta):
 	position.x -= SPEED * delta * mult
 	if position.x < -50 :
 		queue_free()
-	if position.x < 600 and get_node("Explosion").visible == false:
+	if position.x < startPos and get_node("Explosion").visible == false:
 		position.y -= initVel * delta * mult
 		initVel -= GRAVITY * delta * mult
 		if initVel <= 0:
