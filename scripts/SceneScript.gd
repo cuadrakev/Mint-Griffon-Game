@@ -2,27 +2,31 @@ extends Node2D
 
 var hits: int
 
-var timer = 0
+var timer = 1
 
-var fwNode = load("res://FireworksNode.tscn")
+var fwNode = load("res://scenes/FireworksNode.tscn")
 
 var fwInst
 
-var time_out = 1
+var time_out = 1.5
 
 var rng = RandomNumberGenerator.new()
 
+var speedMult
+
 func _ready():
 	hits = 0
+	speedMult = 1
 	
 func _process(delta):
-	timer += delta
+	timer += delta * speedMult
 	if timer >= time_out:
 		spawn_next()
 		rng.randomize()
-		var rand = rng.randf_range(-0.3, 0.3)
+		var rand = rng.randf_range(-0.2, 0.3)
 		time_out = 1 + rand
 		timer = 0
+		speedMult += 0.01
 	
 
 func spawn_next():

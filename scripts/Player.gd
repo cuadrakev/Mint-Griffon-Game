@@ -23,11 +23,12 @@ func conditional(cond: bool, val1, val2):
 	#position = Vector2(100,180)
 
 func _process(delta):
+	var mult = get_node("/root/Scene").speedMult
 	acceleration.y = GRAVITY * conditional(Input.is_mouse_button_pressed(BUTTON_LEFT), -1, 1)
-	velocity.y += acceleration.y * delta
+	velocity.y += acceleration.y * delta * 1.5
 	if(-TOP_VEL > velocity.y or velocity.y > TOP_VEL):
 		velocity.y = TOP_VEL * conditional(velocity.y > 0, 1, -1)
-	position.y += velocity.y * delta
+	position.y += velocity.y * delta * 1.5
 	if(TOP > position.y or position.y > BOTTOM):
 		velocity.y = 0
 		position.y = 180 + 180 * conditional(position.y > 0, 1, -1)

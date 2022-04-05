@@ -14,12 +14,13 @@ func _ready():
 	initVel = rng.randf_range(baseVel - variance, baseVel + variance)
 
 func _process(delta):
-	position.x -= SPEED * delta
+	var mult = get_node("/root/Scene").speedMult
+	position.x -= SPEED * delta * mult
 	if position.x < -50 :
 		queue_free()
-	if position.x < 500 and get_node("Explosion").visible == false:
-		position.y -= initVel * delta
-		initVel -= GRAVITY * delta
+	if position.x < 600 and get_node("Explosion").visible == false:
+		position.y -= initVel * delta * mult
+		initVel -= GRAVITY * delta * mult
 		if initVel <= 0:
 			get_node("Explosion").visible = true
 			get_node("Sprite").visible = false
