@@ -19,6 +19,7 @@ func _process(delta):
 	var mult = get_node("/root/Scene").speedMult
 	position.x -= SPEED * delta * mult
 	if position.x < -50 :
+		get_node("/root/Scene/CanvasLayer/Avoided").updateText()
 		queue_free()
 	if position.x < startPos and get_node("Explosion").visible == false:
 		position.y -= initVel * delta * mult
