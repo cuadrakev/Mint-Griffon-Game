@@ -9,6 +9,8 @@ const baseVel = 400
 var variance = 140
 var initVel
 
+var flag = true
+
 export var startPos: float
 
 func _ready():
@@ -18,8 +20,10 @@ func _ready():
 func _process(delta):
 	var mult = get_node("/root/Scene").speedMult
 	position.x -= SPEED * delta * mult
-	if position.x < -50 :
+	if position.x < 200 and flag:
 		get_node("/root/Scene/CanvasLayer/Avoided").updateText()
+		flag = false
+	if position.x < -50 :
 		queue_free()
 	if position.x < startPos and get_node("Explosion").visible == false:
 		position.y -= initVel * delta * mult
