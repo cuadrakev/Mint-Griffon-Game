@@ -1,16 +1,18 @@
+class_name BirdPlayer
 extends KinematicBody2D
 
-const GRAVITY = 600
+export var GRAVITY = 600
+export var MARGIN = 60
+export var TOP_VEL = 300
+
+onready var BOTTOM = get_viewport_rect().size.y - MARGIN
+onready var TOP = 0 + MARGIN
 
 var acceleration = Vector2(0,0)
 var velocity = Vector2(0,0)
+onready var animSprite = $BirdSprite
 
-const TOP_VEL = 300
 #const TOP_ACC = 5
-
-const MARGIN = 60
-const BOTTOM = 360 - MARGIN
-const TOP = 0 + MARGIN
 
 func conditional(cond: bool, val1, val2):
 	if cond:
@@ -29,3 +31,8 @@ func _process(delta):
 		velocity.y = 0
 		position.y = 180 + (180 - MARGIN) * conditional(position.y > 180, 1, -1)
 	rotation = velocity.y/600
+	
+	if(acceleration.y < 0):
+		animSprite.play()
+	else:
+		animSprite.stop()
