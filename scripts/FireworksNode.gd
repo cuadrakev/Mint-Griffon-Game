@@ -31,6 +31,7 @@ func _process(delta):
 		if initVel <= 0:
 			get_node("Explosion").visible = true
 			get_node("Sprite").visible = false
+			get_node("AudioStreamPlayer2D").play()
 
 
 func _on_Area2D_body_entered(_body):

@@ -14,6 +14,9 @@ onready var animSprite = $BirdSprite
 
 #const TOP_ACC = 5
 
+func _ready():
+	get_child(2).make_current()
+
 func conditional(cond: bool, val1, val2):
 	if cond:
 		return val1
