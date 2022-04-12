@@ -36,3 +36,4 @@ func _process(delta):
 func _on_Area2D_body_entered(_body):
 	get_node("/root/Scene").hits += 1
 	get_node("/root/Scene/CanvasLayer/HitCount").updateText()
+	get_node("/root/Scene/CanvasLayer/StressBar/ProgressBar").value += 40

@@ -15,9 +15,12 @@ var rng = RandomNumberGenerator.new()
 
 var speedMult
 
+var PB
+
 func _ready():
 	hits = 0
 	speedMult = 1
+	PB = get_node("/root/Scene/CanvasLayer/StressBar/ProgressBar")
 	
 func _process(delta):
 	timer += delta * speedMult
@@ -28,6 +31,10 @@ func _process(delta):
 		time_out = 1 + rand
 		timer = 0
 		speedMult += 0.01
+	if PB.value > 0 :
+		PB.value -= delta * speedMult
+	if PB.value >= 99:
+		print("game over")
 	
 
 func spawn_next():
