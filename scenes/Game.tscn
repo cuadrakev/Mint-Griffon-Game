@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/SceneScript.gd" type="Script" id=1]
 [ext_resource path="res://objects/BirdPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/hitCount.gd" type="Script" id=3]
-[ext_resource path="res://sprites/background/sky.png" type="Texture" id=5]
+[ext_resource path="res://sprites/background/bg1.png" type="Texture" id=4]
+[ext_resource path="res://objects/GameBackground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/background/bg_seam2_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/background/bg_seam.png" type="Texture" id=8]
+[ext_resource path="res://sprites/background/bgVer2.png" type="Texture" id=9]
 [ext_resource path="res://scripts/Avoided.gd" type="Script" id=11]
 [ext_resource path="res://sprites/bar_outline.png" type="Texture" id=13]
 [ext_resource path="res://theme.tres" type="Theme" id=15]
-[ext_resource path="res://sprites/background/night.png" type="Texture" id=16]
 
 [node name="Scene" type="Node2D"]
 script = ExtResource( 1 )
@@ -55,22 +58,9 @@ margin_right = 134.0
 margin_bottom = 67.0
 text = "Personal best: 999"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 5 )
-offset = Vector2( 370, 180 )
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-visible = false
-texture = ExtResource( 16 )
-offset = Vector2( 370, 180 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="BackgroundScroller" parent="." instance=ExtResource( 5 )]
+BackgroundTextures = [ ExtResource( 4 ), ExtResource( 9 ) ]
+BackgroundSeams = [ ExtResource( 8 ), ExtResource( 6 ) ]
 
 [node name="BirdPlayer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 221, 186 )

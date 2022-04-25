@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "ParallaxBackground",
+"class": "BackgroundScroller",
+"language": "GDScript",
+"path": "res://scripts/BackgroundScroller.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BirdPlayer",
+"language": "GDScript",
+"path": "res://scripts/Player.gd"
+} ]
+_global_script_class_icons={
+"BackgroundScroller": "",
+"BirdPlayer": ""
+}
+
 [application]
 
 config/name="Birbs"
