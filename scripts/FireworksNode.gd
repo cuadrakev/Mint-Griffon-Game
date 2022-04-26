@@ -26,12 +26,15 @@ func _process(delta):
 	if position.x < -50 :
 		queue_free()
 	if position.x < startPos and get_node("Explosion").visible == false:
+		if not get_node("SwooshPlayer").playing:
+			get_node("SwooshPlayer").play()
 		position.y -= initVel * delta * mult
 		initVel -= GRAVITY * delta * mult
 		if initVel <= 0:
 			get_node("Explosion").visible = true
 			get_node("Sprite").visible = false
-			get_node("AudioStreamPlayer2D").play()
+			get_node("ExplosionPlayer").play()
+			get_node("SwooshPlayer").stop()
 
 
 func _on_Area2D_body_entered(_body):

@@ -15,6 +15,8 @@ var rng = RandomNumberGenerator.new()
 
 var speedMult
 
+const maximumSpeed: float = 2.00
+
 var PB
 
 func _ready():
@@ -30,7 +32,8 @@ func _process(delta):
 		var rand = rng.randf_range(-0.2, 0.3)
 		time_out = 1 + rand
 		timer = 0
-		speedMult += 0.01
+		speedMult += 0.05
+		speedMult = min(speedMult, maximumSpeed)
 	if PB.value > 0 :
 		PB.value -= delta * speedMult
 	if PB.value >= 99:
