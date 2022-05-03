@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/fireworks/red_circle/red.png" type="Texture" id=1]
 [ext_resource path="res://sprites/fireworks/red_circle/red_circle.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/FireworksNode.gd" type="Script" id=4]
 [ext_resource path="res://audio/boom2.wav" type="AudioStream" id=5]
 [ext_resource path="res://audio/swoosh2.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/FireworkSprites.tres" type="SpriteFrames" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.85989
@@ -31,8 +32,16 @@ scale = Vector2( 0.738315, 0.738315 )
 collision_layer = 2
 
 [node name="Sprite" type="Sprite" parent="Explosion/Area2D"]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Explosion/Area2D"]
+frames = ExtResource( 7 )
+animation = "red"
+frame = 3
+speed_scale = 1.2
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion/Area2D"]
 scale = Vector2( 4.8, 4.8 )
