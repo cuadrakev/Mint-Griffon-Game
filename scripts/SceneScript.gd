@@ -24,7 +24,7 @@ func _ready():
 	speedMult = 1
 	PB = get_node("/root/Scene/CanvasLayer/StressBar/ProgressBar")
 	
-func _process(delta):
+func _physics_process(delta):
 	timer += delta * speedMult
 	if timer >= time_out:
 		spawn_next()
@@ -32,7 +32,7 @@ func _process(delta):
 		var rand = rng.randf_range(-0.2, 0.3)
 		time_out = 1 + rand
 		timer = 0
-		speedMult += 0.05
+		speedMult += 0.005
 		speedMult = min(speedMult, maximumSpeed)
 	if PB.value > 0 :
 		PB.value -= delta * speedMult

@@ -27,6 +27,7 @@ func _process(delta):
 		queue_free()
 	if position.x < startPos and get_node("Explosion").visible == false:
 		if not get_node("SwooshPlayer").playing:
+			get_node("SwooshPlayer").pitch_scale += rng.randf_range(0.9, -0.2)
 			get_node("SwooshPlayer").play()
 		position.y -= initVel * delta * mult
 		initVel -= GRAVITY * delta * mult
