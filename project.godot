@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "BirdPlayer",
 "language": "GDScript",
 "path": "res://scripts/Player.gd"
+}, {
+"base": "Sprite",
+"class": "DistanceSign",
+"language": "GDScript",
+"path": "res://scripts/DistanceSign.gd"
 } ]
 _global_script_class_icons={
 "BackgroundScroller": "",
-"BirdPlayer": ""
+"BirdPlayer": "",
+"DistanceSign": ""
 }
 
 [application]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/DistanceSign.png" type="Texture" id=1]
+[ext_resource path="res://scripts/DistanceSign.gd" type="Script" id=2]
+
+[node name="DistanceSign" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -26.0
+margin_top = -20.0
+margin_right = 38.0
+margin_bottom = 1.0
+text = "1000M"
