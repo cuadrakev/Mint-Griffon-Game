@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/orange.png-f2a5e1cef947f54742c6b1be42bf52d4.stex"
+path="res://.import/bgVer2.png-ee12f64ec2cbe0c82b3ee37dfcf25a28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fireworks/orange_circle/orange.png"
-dest_files=[ "res://.import/orange.png-f2a5e1cef947f54742c6b1be42bf52d4.stex" ]
+source_file="res://sprites/background/bgVer2.png"
+dest_files=[ "res://.import/bgVer2.png-ee12f64ec2cbe0c82b3ee37dfcf25a28.stex" ]
 
 [params]
 

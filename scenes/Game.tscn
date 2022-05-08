@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/SceneScript.gd" type="Script" id=1]
 [ext_resource path="res://objects/BirdPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/hitCount.gd" type="Script" id=3]
-[ext_resource path="res://sprites/background/bg1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/background/park.png" type="Texture" id=4]
 [ext_resource path="res://objects/GameBackground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sprites/background/bg_seam2_1.png" type="Texture" id=6]
 [ext_resource path="res://objects/DistanceSign.tscn" type="PackedScene" id=7]
@@ -62,11 +62,14 @@ text = "Personal best: 999"
 [node name="BackgroundScroller" parent="." instance=ExtResource( 5 )]
 BackgroundTextures = [ ExtResource( 4 ), ExtResource( 9 ) ]
 BackgroundSeams = [ ExtResource( 8 ), ExtResource( 6 ) ]
+switchAfter = 3
+
+[node name="DistanceSign" parent="." instance=ExtResource( 7 )]
+position = Vector2( 14, 321 )
+scale = Vector2( 0.4, 0.4 )
+screenSpeed = 15.0
+distanceMultiplyer = 10
 
 [node name="BirdPlayer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 221, 186 )
 scale = Vector2( 0.5, 0.5 )
-
-[node name="DistanceSign" parent="." instance=ExtResource( 7 )]
-position = Vector2( 3, 326 )
-scale = Vector2( 0.6, 0.6 )
