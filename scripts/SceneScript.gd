@@ -6,6 +6,7 @@ var timer = 1
 
 var o_fwNode = load("res://scenes/FireworksNode.tscn")
 var r_fwNode = load("res://scenes/PurpleFwNode.tscn")
+export(Array, PackedScene) var Obstacles
 
 var fwInst
 
@@ -26,6 +27,7 @@ func _process(delta):
 	timer += delta * speedMult
 	if timer >= time_out:
 		spawn_next()
+		spawnObstacle()
 		rng.randomize()
 		var rand = rng.randf_range(-0.2, 0.3)
 		time_out = 1 + rand
@@ -47,3 +49,11 @@ func spawn_next():
 	add_child(fwInst)
 	fwInst.position.x = 900
 	fwInst.position.y = 320
+
+func spawnObstacle():
+	if rng.randi() % 4 == 0:
+		var id = rng.randi() % Obstacles.size()
+		var obstacle = Obstacles[id].instance()
+		add_child(obstacle)
+		obstacle.position.x = get_viewport_rect().size.x + obstacle.get_node("Sprite").get_rect().size.x / 2
+		obstacle.position.y = get_viewport_rect().size.y - obstacle.get_node("Sprite").get_rect().size.y / 2

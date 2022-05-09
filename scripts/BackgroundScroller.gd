@@ -33,18 +33,18 @@ func _process(delta):
 		SeamNode.visible = true
 		BgNode.motion_offset.x = switchAfter - textureWidth
 		BgNode.motion_mirroring.x = 0
-		currentCycle = 2
+		currentCycle = 1
 		
 		currentTexture += 1
 		if currentTexture == BackgroundTextures.size():
 			currentTexture = 0
 	
-	if currentCycle == 2 and -self.scroll_offset.x > switchAfter + 2 * textureWidth:
+	if currentCycle == 1 and -self.scroll_offset.x > switchAfter + 2 * textureWidth:
 		BgNode.get_node("Sprite").texture = BackgroundTextures[currentTexture]
 		BgNode.motion_offset.x = switchAfter + textureWidth
-		currentCycle = 3
+		currentCycle = 2
 	
-	if currentCycle == 3 and -self.scroll_offset.x > switchAfter + 4 * textureWidth:
+	if currentCycle == 2 and -self.scroll_offset.x > switchAfter + 4 * textureWidth:
 		self.scroll_offset.x = 0
 		BgNode.motion_offset.x = 0
 		BgNode.motion_mirroring.x = textureWidth
