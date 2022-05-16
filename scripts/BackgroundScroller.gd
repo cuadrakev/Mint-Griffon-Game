@@ -4,7 +4,7 @@ extends ParallaxBackground
 export(Array, Texture) var BackgroundTextures
 #seams are in order: 1->2, 2->3, ..., n->1
 export(Array, Texture) var BackgroundSeams
-export var switchAfter = 2
+export var switchAfter = 2.0
 
 var scrollSpeed = 200
 var textureWidth = 0
@@ -13,10 +13,16 @@ var currentTexture = 0
 var currentCycle = 0
 onready var BgNode = $Background
 onready var SeamNode = $Seam
+onready var screenSize = get_viewport().size
 
 func _ready():
 	assert(BackgroundTextures.size() >= 2)
 	assert(BackgroundSeams.size() == BackgroundTextures.size())
+
+	var texToScreen = BackgroundTextures[0].get_height() / 360.0
+	self.scale.x = 1.0 / texToScreen
+	self.scale.y = 1.0 / texToScreen
+	
 	textureWidth = BackgroundTextures[0].get_width()
 	switchAfter *= textureWidth
 	
