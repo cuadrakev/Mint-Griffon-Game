@@ -1,19 +1,22 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/SceneScript.gd" type="Script" id=1]
 [ext_resource path="res://objects/BirdPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/hitCount.gd" type="Script" id=3]
-[ext_resource path="res://sprites/background/background_4.png" type="Texture" id=4]
+[ext_resource path="res://objects/BushObsticle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/GameBackground.tscn" type="PackedScene" id=5]
-[ext_resource path="res://sprites/background/background_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/background/seam2-1.png" type="Texture" id=6]
 [ext_resource path="res://sprites/outline.png" type="Texture" id=7]
-[ext_resource path="res://sprites/background/background_2.png" type="Texture" id=8]
-[ext_resource path="res://sprites/background/background_3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/background/urban.png" type="Texture" id=8]
+[ext_resource path="res://objects/DistanceSign.tscn" type="PackedScene" id=9]
+[ext_resource path="res://sprites/background/parkPixel.png" type="Texture" id=10]
 [ext_resource path="res://scripts/Avoided.gd" type="Script" id=11]
+[ext_resource path="res://sprites/background/parkPixel1-2.png" type="Texture" id=12]
 [ext_resource path="res://theme.tres" type="Theme" id=15]
 
 [node name="Scene" type="Node2D"]
 script = ExtResource( 1 )
+Obstacles = [ ExtResource( 4 ) ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -59,9 +62,17 @@ margin_bottom = 67.0
 text = "Personal best: 999"
 
 [node name="BackgroundScroller" parent="." instance=ExtResource( 5 )]
-BackgroundTextures = [ ExtResource( 6 ), ExtResource( 4 ) ]
-BackgroundSeams = [ ExtResource( 8 ), ExtResource( 9 ) ]
+BackgroundTextures = [ ExtResource( 10 ), ExtResource( 8 ) ]
+BackgroundSeams = [ ExtResource( 12 ), ExtResource( 6 ) ]
+switchAfter = 4.0
 
 [node name="BirdPlayer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 221, 186 )
 scale = Vector2( 0.5, 0.5 )
+
+[node name="DistanceSign" parent="." instance=ExtResource( 9 )]
+position = Vector2( 12.0975, 310.19 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 2
+screenSpeed = 20.0
+distanceMultiplyer = 10
