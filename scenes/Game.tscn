@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/SceneScript.gd" type="Script" id=1]
 [ext_resource path="res://objects/BirdPlayer.tscn" type="PackedScene" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://objects/GameBackground.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sprites/background/parkPixel1-2.png" type="Texture" id=6]
 [ext_resource path="res://objects/DistanceSign.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/Trashcan.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sprites/background/urban.png" type="Texture" id=8]
+[ext_resource path="res://sprites/background/seam2-1.png" type="Texture" id=9]
+[ext_resource path="res://objects/BushObsticle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/Avoided.gd" type="Script" id=11]
 [ext_resource path="res://sprites/bar_outline.png" type="Texture" id=13]
 [ext_resource path="res://theme.tres" type="Theme" id=15]
@@ -60,13 +62,14 @@ margin_bottom = 67.0
 text = "Personal best: 999"
 
 [node name="BackgroundScroller" parent="." instance=ExtResource( 5 )]
-BackgroundTextures = [ ExtResource( 4 ), ExtResource( 4 ) ]
-BackgroundSeams = [ ExtResource( 6 ), ExtResource( 6 ) ]
+BackgroundTextures = [ ExtResource( 4 ), ExtResource( 8 ) ]
+BackgroundSeams = [ ExtResource( 6 ), ExtResource( 9 ) ]
+switchAfter = 4.0
 
 [node name="DistanceSign" parent="." instance=ExtResource( 7 )]
 position = Vector2( 14, 321 )
 scale = Vector2( 0.4, 0.4 )
-screenSpeed = 15.0
+screenSpeed = 20.0
 distanceMultiplyer = 10
 
 [node name="BirdPlayer" parent="." instance=ExtResource( 2 )]
