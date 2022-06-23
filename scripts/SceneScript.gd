@@ -10,6 +10,10 @@ export(Array, PackedScene) var Obstacles
 
 var fwInst
 
+var playing = true
+
+signal game_over
+
 var time_out = 1.5
 
 var rng = RandomNumberGenerator.new()
@@ -27,7 +31,7 @@ func _ready():
 	
 func _physics_process(delta):
 	timer += delta * speedMult
-	if timer >= time_out:
+	if timer >= time_out and playing:
 		spawn_next()
 		spawnObstacle()
 		rng.randomize()
@@ -36,10 +40,11 @@ func _physics_process(delta):
 		timer = 0
 		speedMult += 0.005
 		speedMult = min(speedMult, maximumSpeed)
-	if PB.value > 0 :
+	if PB.value > 0 and playing:
 		PB.value -= delta * speedMult
 	if PB.value >= 99:
-		print("game over")
+		playing = false
+		emit_signal("game_over")
 	
 
 func spawn_next():

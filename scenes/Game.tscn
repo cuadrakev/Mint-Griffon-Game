@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/SceneScript.gd" type="Script" id=1]
 [ext_resource path="res://objects/BirdPlayer.tscn" type="PackedScene" id=2]
@@ -12,7 +12,45 @@
 [ext_resource path="res://sprites/background/parkPixel.png" type="Texture" id=10]
 [ext_resource path="res://scripts/Avoided.gd" type="Script" id=11]
 [ext_resource path="res://sprites/background/parkPixel1-2.png" type="Texture" id=12]
+[ext_resource path="res://scenes/Best.gd" type="Script" id=13]
+[ext_resource path="res://scenes/LoseMenu.gd" type="Script" id=14]
 [ext_resource path="res://theme.tres" type="Theme" id=15]
+[ext_resource path="res://sprites/ButtonSprite.png" type="Texture" id=16]
+[ext_resource path="res://sprites/background/night.png" type="Texture" id=17]
+[ext_resource path="res://fonts/EraserDust.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://scenes/ResManager.gd" type="Script" id=19]
+
+[sub_resource type="DynamicFont" id=6]
+size = 80
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="DynamicFont" id=13]
+size = 30
+font_data = ExtResource( 18 )
 
 [node name="Scene" type="Node2D"]
 script = ExtResource( 1 )
@@ -59,7 +97,68 @@ margin_left = 15.0
 margin_top = 53.0
 margin_right = 134.0
 margin_bottom = 67.0
-text = "Personal best: 999"
+text = "Personal best: "
+script = ExtResource( 13 )
+
+[node name="LoseMenu" type="Node2D" parent="CanvasLayer"]
+visible = false
+script = ExtResource( 14 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/LoseMenu"]
+position = Vector2( 355, 193 )
+scale = Vector2( 0.639831, 0.770897 )
+texture = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseMenu"]
+margin_left = 259.0
+margin_top = 67.0
+margin_right = 426.0
+margin_bottom = 238.0
+custom_colors/font_color = Color( 0.901961, 0.207843, 0.207843, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "YOU
+LOST"
+align = 1
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/LoseMenu"]
+margin_left = 385.0
+margin_top = 244.0
+margin_right = 557.0
+margin_bottom = 310.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+icon = ExtResource( 16 )
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseMenu/ReturnButton"]
+margin_left = 42.0
+margin_top = 15.0
+margin_right = 121.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 7 )
+text = "MENU"
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/LoseMenu"]
+margin_left = 148.0
+margin_top = 244.0
+margin_right = 320.0
+margin_bottom = 310.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+icon = ExtResource( 16 )
+
+[node name="Label" type="Label" parent="CanvasLayer/LoseMenu/RetryButton"]
+margin_left = 37.0
+margin_top = 14.0
+margin_right = 125.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 13 )
+text = "RETRY"
 
 [node name="BackgroundScroller" parent="." instance=ExtResource( 5 )]
 BackgroundTextures = [ ExtResource( 10 ), ExtResource( 8 ) ]
@@ -76,3 +175,10 @@ scale = Vector2( 0.5, 0.5 )
 z_index = 2
 screenSpeed = 20.0
 distanceMultiplyer = 10
+
+[node name="ResManager" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[connection signal="game_over" from="." to="BirdPlayer" method="_on_Scene_game_over"]
+[connection signal="pressed" from="CanvasLayer/LoseMenu/ReturnButton" to="CanvasLayer/LoseMenu" method="_on_ReturnButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/LoseMenu/RetryButton" to="CanvasLayer/LoseMenu" method="_on_RetryButton_pressed"]
